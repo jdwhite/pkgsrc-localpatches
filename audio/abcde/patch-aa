@@ -1,0 +1,11 @@
+--- abcde.old	2023-08-01 20:18:19
++++ abcde	2023-08-01 20:18:31
+@@ -4106,7 +4106,7 @@
+ if [ "$CDROM" = "" ] ; then
+ 	if [ -e /dev/cdroms/cdrom0 ]; then
+ 		CDROM=/dev/cdroms/cdrom0
+-	elif [ "$OSFLAVOUR" = "OSX" ] && [[ $(diskutil list) =~ CD_part[^/]*(disk.)$'\n' ]]; then
++	elif [ "$OSFLAVOUR" = "OSX" ] && [[ $(diskutil list) =~ CD_part[^/]*(disk.{1,2})$'\n' ]]; then
+ 		CDROM=/dev/${BASH_REMATCH[1]}
+ 	elif [ -e /dev/cdrom ]; then
+ 		CDROM=/dev/cdrom

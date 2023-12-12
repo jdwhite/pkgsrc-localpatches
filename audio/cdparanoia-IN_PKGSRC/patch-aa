@@ -1,0 +1,11 @@
+--- interface/osx_interface.broken	2023-08-01 20:08:02
++++ interface/osx_interface.c	2023-08-01 20:08:19
+@@ -146,7 +146,7 @@
+     return -1;
+   }
+ 
+-  buf_len = CFDataGetLength(data) + 1;
++  buf_len = CFDataGetLength(data);
+   range = CFRangeMake(0, buf_len);
+ 
+   d->raw_toc = (CDTOC *)malloc(buf_len);

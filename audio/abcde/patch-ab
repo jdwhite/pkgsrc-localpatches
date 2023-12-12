@@ -1,0 +1,38 @@
+--- abcde.old	2023-08-01 20:18:19
++++ abcde	2023-08-01 20:23:02
+@@ -2062,7 +2062,7 @@
+ 		vecho -n "Getting CD track info... "
+ 		# In OSX, unmount the disc before a query
+ 		if [ "$OSFLAVOUR" = "OSX" ]; then
+-			diskutil unmount "${CDROM#/dev/}"
++			diskutil unmount "${CDROM#/dev/}" >/dev/null 2>&1
+ 		fi
+ 		case "$CDROMREADERSYNTAX" in
+ 			flac)
+@@ -2149,7 +2149,7 @@
+ 		fi
+ 		# In OSX, remount the disc again
+ 		if [ "$OSFLAVOUR" = "OSX" ]; then
+-			diskutil mount "${CDROM#/dev/}"
++			diskutil mount "${CDROM#/dev/}" >/dev/null 2>&1
+ 		fi
+ 		WEHAVEACD=y
+ 		CDDBDISCID=$(echo "$CDDBTRACKINFO" | cut -f1 -d' ')
+@@ -2601,7 +2601,7 @@
+ 
+ 		if [ "$OSFLAVOUR" = "OSX" ] ; then
+ 			# Hei, we have to unmount the device before running anything like cdda2wav/icedax in OSX
+-			diskutil unmount "${CDROM#/dev/}"
++			diskutil unmount "${CDROM#/dev/}" >/dev/null 2>&1
+ 			# Also, in OSX the cdrom device for cdda2wav/icedax changes...
+ 			CDDA2WAVCDROM="IODVDServices"
+ 		elif [ "$OSFLAVOUR" = "FBSD" ] || [ "$OSFLAVOUR" = "IRIX" ]; then
+@@ -3574,7 +3574,7 @@
+ 		cdda2wav|icedax)
+ 			if [ "$OSFLAVOUR" = "OSX" ] ; then
+ 				# Hei, we have to unmount the device before running anything like cdda2wav/icedax in OSX
+-				diskutil unmount "${CDROM#/dev/}"
++				diskutil unmount "${CDROM#/dev/}" >/dev/null 2>&1
+ 				# Also, in OSX the cdrom device for cdda2wav/icedax changes...
+ 				CDDA2WAVCDROM="IODVDServices"
+ 			elif [ "$OSFLAVOUR" = "FBSD" ] || [ "$OSFLAVOUR" = "IRIX" ]; then
